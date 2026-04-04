@@ -2,548 +2,532 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>India Wellness — Care & Bloom 2026</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>India Wellness — Care & Bloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
+@font-face{font-family:'PP Editorial New';src:url('PPEditorialNew-Ultralight.otf') format('opentype');font-weight:200;font-style:normal}
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --pink:#FF2FCC;--lime:#CCFD28;--cream:#FCF7ED;--cream-b:#F5E8CE;
-  --dark:#1A1A1A;--body:#494A52;--green:#2dc653;--pink-bg:#fff5fc;
-  --t1:#FCF7ED;--t2:rgba(252,247,237,0.7);
+--bg:#0F0A1F;--card:rgba(139,92,246,0.05);--card-border:rgba(139,92,246,0.10);
+--gold:#7C5CFC;--gold-dim:rgba(124,92,252,0.15);--cream:#EDE8FF;
+--text:#e0daf0;--dim:rgba(255,255,255,0.35);--body-dim:rgba(255,255,255,0.55);
 }
-body{font-family:'Inter',-apple-system,sans-serif;background:var(--dark);color:var(--t1);overflow:hidden}
-.deck{width:100vw;height:100vh;position:relative}
-.slide{width:100vw;height:100vh;display:none;flex-direction:column;justify-content:center;padding:50px 70px;position:absolute;top:0;left:0;animation:fi .4s ease}
-.slide.active{display:flex}
-@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.sc{position:fixed;bottom:24px;right:36px;font-size:13px;color:rgba(252,247,237,0.3);z-index:100;font-weight:500}
-.nh{position:fixed;bottom:24px;left:36px;font-size:12px;color:rgba(252,247,237,0.2);z-index:100}
-h1{font-family:'Fraunces',serif;font-size:52px;font-weight:700;line-height:1.1;margin-bottom:20px}
-h2{font-family:'Fraunces',serif;font-size:38px;font-weight:600;line-height:1.2;margin-bottom:16px}
-h3{font-size:26px;font-weight:600;line-height:1.3;margin-bottom:14px}
-p{font-size:20px;line-height:1.6;color:var(--t2)}
-.sub{font-size:22px;color:var(--t2);font-weight:400;margin-bottom:32px;font-family:'Fraunces',serif}
-.hl{color:var(--pink)}.hl-l{color:var(--lime)}.hl-g{color:var(--green)}
-.k{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;display:block}
-.k-p{color:var(--pink)}.k-l{color:var(--lime)}.k-g{color:var(--green)}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
+-webkit-tap-highlight-color:transparent;touch-action:manipulation;overscroll-behavior:contain}
+body{background:linear-gradient(170deg,#1A0E3D 0%,#0F0A1F 40%,#08051A 100%)}
 
-/* Cards */
-.c{background:rgba(252,247,237,0.05);border:1px solid rgba(252,247,237,0.1);border-radius:14px;padding:22px}
-.c-p{border-color:rgba(255,47,204,0.3)}.c-l{border-color:rgba(204,253,40,0.3)}.c-g{border-color:rgba(45,198,83,0.3)}
-.sn{font-family:'Fraunces',serif;font-size:44px;font-weight:700;color:var(--pink);line-height:1}
-.sn-l{color:var(--lime)}.sn-g{color:var(--green)}
-.sl{font-size:15px;color:var(--t2);margin-top:6px;font-weight:500}
+/* --- GRAIN OVERLAY --- */
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")}
 
-/* Layout */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:20px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:20px}
-.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin-top:20px}
+/* --- BLOB --- */
+.blob{position:fixed;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:0.06;pointer-events:none;z-index:0}
+.blob-1{top:-200px;right:-100px;background:var(--gold);animation:morph 20s ease-in-out infinite}
+.blob-2{bottom:-200px;left:-150px;background:#4C1D95;animation:morph 25s ease-in-out infinite reverse}
+@keyframes morph{0%,100%{border-radius:60% 40% 30% 70%/60% 30% 70% 40%;transform:rotate(0deg) scale(1)}50%{border-radius:30% 60% 70% 40%/50% 60% 30% 60%;transform:rotate(180deg) scale(1.1)}}
 
-/* Bullets */
-ul.bl{list-style:none;margin-top:14px}
-ul.bl li{font-size:19px;line-height:1.5;padding:5px 0 5px 24px;position:relative;color:var(--t2)}
-ul.bl li::before{content:'';position:absolute;left:0;top:12px;width:9px;height:9px;border-radius:50%;background:var(--pink)}
-ul.bl li.l::before{background:var(--lime)}ul.bl li.g::before{background:var(--green)}
+/* --- SLIDES --- */
+.deck{position:relative;width:100%;height:100vh}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+opacity:0;visibility:hidden;transition:opacity 0.6s ease,visibility 0.6s ease;z-index:1;padding:40px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.slide.active{opacity:1;visibility:visible;z-index:2}
+.slide-inner{max-width:900px;width:100%;position:relative;z-index:1}
 
-/* Quote */
-.q{font-family:'Fraunces',serif;font-size:26px;font-weight:400;line-height:1.5;font-style:italic;color:var(--t2);border-left:4px solid var(--pink);padding-left:22px;margin:28px 0}
-.q-l{border-color:var(--lime)}.q-g{border-color:var(--green)}
+/* --- STAGGER ANIMATIONS --- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.slide.active .slide-inner>*{opacity:0;animation:fadeUp 0.5s ease forwards}
+.slide.active .slide-inner>*:nth-child(1){animation-delay:0.05s}
+.slide.active .slide-inner>*:nth-child(2){animation-delay:0.12s}
+.slide.active .slide-inner>*:nth-child(3){animation-delay:0.19s}
+.slide.active .slide-inner>*:nth-child(4){animation-delay:0.26s}
+.slide.active .slide-inner>*:nth-child(5){animation-delay:0.33s}
+.slide.active .slide-inner>*:nth-child(6){animation-delay:0.40s}
+.slide.active .slide-inner>*:nth-child(7){animation-delay:0.47s}
+.slide.active .slide-inner>*:nth-child(8){animation-delay:0.54s}
+.slide.active .slide-inner>*:nth-child(9){animation-delay:0.61s}
+.slide.active .slide-inner>*:nth-child(10){animation-delay:0.68s}
 
-/* Tags */
-.t{display:inline-block;padding:4px 10px;border-radius:16px;font-size:12px;font-weight:600;margin-right:5px}
-.t-p{background:rgba(255,47,204,0.15);color:var(--pink)}
-.t-l{background:rgba(204,253,40,0.15);color:var(--lime)}
-.t-g{background:rgba(45,198,83,0.15);color:var(--green)}
+/* --- TYPOGRAPHY --- */
+.label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:32px;font-weight:500}
+.huge{font-family:'PP Editorial New',Georgia,serif;font-size:clamp(56px,8vw,96px);font-weight:200;line-height:1.05;letter-spacing:-2px;color:var(--cream)}
+.big{font-family:'PP Editorial New',Georgia,serif;font-size:clamp(32px,4.5vw,52px);font-weight:200;line-height:1.15;letter-spacing:-1px;color:var(--cream)}
+.medium{font-family:'PP Editorial New',Georgia,serif;font-size:clamp(24px,3vw,36px);font-weight:200;line-height:1.25;color:var(--cream)}
+.body{font-size:16px;line-height:1.7;color:var(--body-dim);max-width:680px;margin-top:20px;font-weight:300}
+.gold{color:var(--gold)}
+.dim{color:var(--dim)}
+.struck{text-decoration:line-through;color:var(--dim)}
+.ital{font-family:'PP Editorial New',Georgia,serif;font-style:italic;font-weight:200}
+.divider{width:48px;height:1px;background:var(--gold);opacity:0.4;margin:28px 0}
+.editorial-accent{font-family:'PP Editorial New',Georgia,serif;font-style:italic;font-weight:200;font-size:clamp(20px,2.5vw,28px);color:var(--cream);margin-top:24px;line-height:1.4}
 
-/* Table */
-.ct{width:100%;margin-top:18px;border-collapse:collapse}
-.ct th,.ct td{text-align:left;padding:11px 12px;font-size:16px;border-bottom:1px solid rgba(252,247,237,0.08)}
-.ct th{color:var(--pink);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1px}
-.ct td{color:var(--t2)}.ct td:first-child{color:var(--t1);font-weight:600}
+/* --- STAT ROW --- */
+.stat-row{display:flex;gap:32px;margin-top:32px;flex-wrap:wrap}
+.stat-box{flex:1;min-width:140px;padding:20px 24px;background:var(--card);border:1px solid var(--card-border);border-radius:12px}
+.stat-num{font-family:'PP Editorial New',Georgia,serif;font-size:clamp(28px,3.5vw,42px);font-weight:200;color:var(--gold);letter-spacing:-1px}
+.stat-label{font-size:12px;color:var(--dim);margin-top:6px;text-transform:uppercase;letter-spacing:1.5px;font-weight:500}
 
-/* Timeline */
-.tl{margin-top:20px}
-.tli{padding:12px 0 12px 22px;margin-left:10px;border-left:2px solid rgba(252,247,237,0.1);position:relative}
-.tli::before{content:'';position:absolute;left:-7px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--pink)}
-.tli h4{font-size:18px;font-weight:700}.tli p{font-size:16px;color:var(--t2);margin-top:3px}
+/* --- SPLIT COLUMNS --- */
+.split-cols{display:flex;gap:48px;margin-top:32px}
+.col{flex:1}
+.col-header{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--card-border)}
+.col-header.gold-h{color:var(--gold);border-color:rgba(124,92,252,0.2)}
+.col-header.dim-h{color:var(--dim);border-color:var(--card-border)}
+.col-item{font-size:14px;line-height:1.6;padding:8px 0;color:var(--body-dim);border-bottom:1px solid rgba(255,255,255,0.03)}
+.col-item.gold-item{color:var(--cream)}
+.col-item.dim-item{color:var(--dim);text-decoration:line-through;opacity:0.6}
+.col-item small{display:block;font-size:11px;color:var(--dim);margin-top:2px}
 
-/* Comparison boxes */
-.vs{display:flex;align-items:stretch;gap:0;margin-top:20px}
-.vs-box{flex:1;padding:24px;text-align:center}
-.vs-left{background:rgba(252,247,237,0.05);border-radius:14px 0 0 14px;border:1px solid rgba(252,247,237,0.1)}
-.vs-right{background:rgba(255,47,204,0.08);border-radius:0 14px 14px 0;border:1px solid rgba(255,47,204,0.2)}
-.vs-mid{display:flex;align-items:center;padding:0 16px;font-size:28px}
+/* --- GRID --- */
+.grid-2x2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.grid-2x3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:28px}
+.ref-card{padding:20px 24px;background:var(--card);border:1px solid var(--card-border);border-radius:12px}
+.ref-card .ref-num{font-family:'PP Editorial New',Georgia,serif;font-size:clamp(28px,3vw,38px);font-weight:200;color:var(--gold);letter-spacing:-1px}
+.ref-card .ref-name{font-size:13px;color:var(--cream);margin-top:6px;font-weight:500}
+.ref-card .ref-detail{font-size:12px;color:var(--dim);margin-top:4px}
+.cat-card{padding:20px 24px;background:var(--card);border:1px solid var(--card-border);border-radius:12px;position:relative}
+.cat-card .cat-name{font-size:15px;color:var(--cream);font-weight:500}
+.cat-card .cat-size{font-family:'PP Editorial New',Georgia,serif;font-size:22px;color:var(--gold);margin-top:8px;font-weight:200}
+.cat-card .cat-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);padding:3px 10px;border-radius:20px;display:inline-block;margin-top:10px;font-weight:600}
+.cat-card .cat-tag.next{color:var(--body-dim);background:rgba(255,255,255,0.05)}
+.cat-card .cat-tag.future{color:var(--dim);background:rgba(255,255,255,0.03)}
 
-/* Progress bars */
-.pb{display:flex;align-items:center;gap:12px;margin:8px 0}
-.pb-label{font-size:14px;width:100px;font-weight:500;color:var(--t2)}
-.pb-bar{flex:1;height:24px;background:rgba(252,247,237,0.08);border-radius:12px;overflow:hidden}
-.pb-fill{height:100%;border-radius:12px;display:flex;align-items:center;padding-left:10px;font-size:12px;font-weight:600}
+/* --- DEPLOY BARS --- */
+.deploy-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.deploy-item{padding:16px 20px;background:var(--card);border:1px solid var(--card-border);border-radius:12px}
+.deploy-pct{font-family:'PP Editorial New',Georgia,serif;font-size:32px;color:var(--gold);font-weight:200}
+.deploy-name{font-size:13px;color:var(--cream);margin-top:4px;font-weight:500}
+
+/* --- MOAT LIST --- */
+.moat-list{margin-top:24px}
+.moat-item{padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:15px;color:var(--body-dim);display:flex;align-items:baseline;gap:12px}
+.moat-item::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px}
+
+/* --- TIMELINE --- */
+.timeline{margin-top:28px;display:flex;gap:24px}
+.tl-item{flex:1;padding:16px 20px;border-left:2px solid var(--gold-dim);position:relative}
+.tl-item::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--gold);position:absolute;left:-5px;top:18px}
+.tl-year{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}
+.tl-val{font-family:'PP Editorial New',Georgia,serif;font-size:24px;color:var(--cream);margin-top:6px;font-weight:200}
+.tl-desc{font-size:12px;color:var(--dim);margin-top:4px}
+
+/* --- TABLE --- */
+.tbl-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:24px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{text-align:left;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);font-weight:500;padding:12px 16px;border-bottom:1px solid var(--card-border)}
+.tbl td{padding:12px 16px;font-size:14px;color:var(--body-dim);border-bottom:1px solid rgba(255,255,255,0.03)}
+.tbl td:first-child{color:var(--cream);font-weight:500}
+.tbl .gold-cell{color:var(--gold);font-family:'PP Editorial New',Georgia,serif;font-size:18px;font-weight:200}
+
+/* --- NAV --- */
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:linear-gradient(transparent,rgba(10,5,26,0.9))}
+.nav-btn{background:none;border:1px solid var(--card-border);color:var(--dim);width:44px;height:44px;min-width:44px;min-height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.nav-btn:hover{border-color:var(--gold);color:var(--gold)}
+.nav-btn svg{width:16px;height:16px}
+.progress{display:flex;align-items:center;gap:12px}
+.progress-bar{width:120px;height:2px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--gold);transition:width 0.4s ease;border-radius:2px}
+.counter{font-size:12px;color:var(--dim);letter-spacing:1px;font-variant-numeric:tabular-nums}
+.section-label{font-size:11px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;min-width:120px;text-align:right}
+
+/* --- CLICK ZONES --- */
+.click-left,.click-right{position:fixed;top:0;bottom:60px;z-index:50;cursor:pointer}
+.click-left{left:0;width:20%}
+.click-right{right:0;width:20%}
+
+/* --- LOGO --- */
+.cb-logo{height:32px;width:auto;margin-bottom:24px}
+
+/* --- APPENDIX SEPARATOR --- */
+.appendix-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:0.5;margin-bottom:40px}
+
+/* --- RESPONSIVE --- */
+@media(max-width:768px){
+  .slide{padding:24px 20px;padding-bottom:80px;align-items:flex-start;padding-top:40px}
+  .stat-row{gap:12px}.stat-box{min-width:100px;padding:14px 16px}
+  .split-cols{flex-direction:column;gap:28px}
+  .grid-2x2,.deploy-grid{grid-template-columns:1fr}
+  .grid-2x3{grid-template-columns:1fr 1fr}
+  .timeline{flex-direction:column;gap:12px}
+  .nav{padding:12px 20px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+  .huge{letter-spacing:-1px}
+  .label{font-size:10px;letter-spacing:2px;margin-bottom:20px}
+  .body{font-size:15px;line-height:1.65}
+  .editorial-accent{font-size:clamp(17px,2.2vw,24px)}
+  .moat-item{font-size:14px}
+  .tbl th,.tbl td{padding:10px 12px;font-size:13px}
+  .tbl .gold-cell{font-size:16px}
+  .col-item{font-size:13px}
+  .col-item small{font-size:10px}
+  .click-left{width:30%}
+  .click-right{width:30%}
+  .cb-logo{height:28px}
+}
+@media(max-width:480px){
+  .slide{padding:20px 16px;padding-bottom:80px}
+  .grid-2x3{grid-template-columns:1fr}
+  .stat-row{gap:8px;flex-direction:column}
+  .stat-box{min-width:unset}
+  .stat-num{font-size:clamp(22px,5vw,32px)}
+  .ref-card .ref-num{font-size:clamp(22px,5vw,32px)}
+  .ref-card{padding:16px}
+  .cat-card{padding:16px}
+  .nav{padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  .counter{font-size:11px}
+  .section-label{display:none}
+  .progress-bar{width:80px}
+  .click-left{width:35%}
+  .click-right{width:35%}
+  .cb-logo{height:24px}
+  .divider{margin:20px auto}
+}
 </style>
 </head>
 <body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="click-left" onclick="prev()"></div>
+<div class="click-right" onclick="next()"></div>
 
-<div class="deck" id="deck">
+<div class="deck">
 
-<!-- SLIDE 1: TITLE -->
-<div class="slide active" style="background:linear-gradient(135deg,#1A1A1A 0%,#2a1a2a 50%,#1A1A1A 100%)">
-  <div style="text-align:center;max-width:900px;margin:0 auto">
-    <div style="margin-bottom:16px"><span style="font-size:72px">🇮🇳</span></div>
-    <h1 style="font-size:72px">India Wellness</h1>
-    <p class="sub" style="font-size:26px">The Last Great Consumer Market.<br>The First AI-Native Playbook.</p>
-    <div style="display:flex;gap:12px;justify-content:center;margin-top:36px">
-      <div class="t t-p" style="font-size:14px;padding:8px 18px">💪 Physical</div>
-      <div class="t t-l" style="font-size:14px;padding:8px 18px">🧠 Mental</div>
-      <div class="t t-g" style="font-size:14px;padding:8px 18px">🌿 Gut</div>
-      <div class="t" style="font-size:14px;padding:8px 18px;background:rgba(167,139,250,0.15);color:#a78bfa">💜 Women's</div>
-    </div>
-    <div style="display:flex;gap:10px;align-items:center;justify-content:center;margin-top:48px">
-      <div style="width:40px;height:3px;background:var(--pink)"></div>
-      <p style="font-size:15px;color:rgba(252,247,237,0.4)">Care & Bloom · 2026</p>
-    </div>
+<!-- ============ SLIDE 1: TITLE ============ -->
+<div class="slide active" data-label="India Wellness">
+<div class="slide-inner" style="text-align:center">
+  <img src="cb-logo-white.svg" alt="Care & Bloom" class="cb-logo">
+  <div class="label">Care & Bloom · 2026</div>
+  <div class="huge">India <span class="gold">Wellness</span></div>
+  <div class="divider" style="margin:28px auto"></div>
+  <div class="editorial-accent" style="margin-top:16px;opacity:0.85"><span class="dim">India</span> already trusts atoms. We bring the <span class="gold">machine.</span></div>
+  <div style="display:flex;gap:16px;justify-content:center;margin-top:36px;flex-wrap:wrap">
+    <span style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding:6px 16px;border:1px solid rgba(124,92,252,0.25);border-radius:20px">Physical</span>
+    <span style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding:6px 16px;border:1px solid rgba(124,92,252,0.25);border-radius:20px">Mental</span>
+    <span style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding:6px 16px;border:1px solid rgba(124,92,252,0.25);border-radius:20px">Gut</span>
+    <span style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding:6px 16px;border:1px solid rgba(124,92,252,0.25);border-radius:20px">Women's</span>
   </div>
 </div>
-
-<!-- SLIDE 2: THE EXPLOSION -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#1a2a1a 100%)">
-  <span class="k k-l">01 — THE EXPLOSION</span>
-  <h2>India's <span class="hl-l">$164 Billion</span> Wellness Market</h2>
-  <div class="g4" style="margin-top:24px">
-    <div class="c c-l" style="text-align:center">
-      <div class="sn sn-l" style="font-size:36px">$164B</div>
-      <div class="sl">Total wellness market (2025)</div>
-      <div style="height:1px;background:rgba(204,253,40,0.2);margin:12px 0"></div>
-      <p style="font-size:14px;color:var(--lime)">→ $258B by 2034</p>
-    </div>
-    <div class="c c-p" style="text-align:center">
-      <div class="sn" style="font-size:36px">52%</div>
-      <div class="sl">D2C nutrition CAGR</div>
-      <div style="height:1px;background:rgba(255,47,204,0.2);margin:12px 0"></div>
-      <p style="font-size:14px;color:var(--pink)">₹3,727cr → ₹8,700cr by 2027</p>
-    </div>
-    <div class="c c-g" style="text-align:center">
-      <div class="sn sn-g" style="font-size:36px">1.4B</div>
-      <div class="sl">People. Median age 28.</div>
-      <div style="height:1px;background:rgba(45,198,83,0.2);margin:12px 0"></div>
-      <p style="font-size:14px;color:var(--green)">Youngest major economy</p>
-    </div>
-    <div class="c" style="text-align:center;border-color:rgba(167,139,250,0.3)">
-      <div class="sn" style="font-size:36px;color:#a78bfa">650M+</div>
-      <div class="sl">Women — massively underserved</div>
-      <div style="height:1px;background:rgba(167,139,250,0.2);margin:12px 0"></div>
-      <p style="font-size:14px;color:#a78bfa">Biggest white space in wellness</p>
-    </div>
-  </div>
-  <div class="q q-l" style="margin-top:28px;font-size:24px">
-    The brands India will love for the next 50 years haven't been built yet.
-  </div>
 </div>
 
-<!-- SLIDE 3: THE SCRAMBLE -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#2a1a10 100%)">
-  <span class="k k-p">02 — THE SCRAMBLE</span>
-  <h2>Everyone wants in. <span class="hl">Nobody's fast enough.</span></h2>
-  <div class="g3" style="margin-top:24px">
-    <div class="c c-p">
-      <p style="font-size:28px;margin-bottom:8px">🏭</p>
-      <h3 style="font-size:20px;color:var(--pink);margin-bottom:10px">HUL</h3>
-      <p style="font-size:16px">Acquired OZiva + Wellbeing Nutrition. <strong style="color:var(--t1)">₹334cr.</strong> Still integrating. 200+ person teams. Moving at FMCG speed in a DTC world.</p>
-    </div>
-    <div class="c c-l">
-      <p style="font-size:28px;margin-bottom:8px">💊</p>
-      <h3 style="font-size:20px;color:var(--lime);margin-bottom:10px">Nestlé × Dr. Reddy's</h3>
-      <p style="font-size:16px">JV to license Nature's Bounty, Osteo Bi-Flex, Ester-C. Operational 2026. <strong style="color:var(--t1)">Pharma speed.</strong> Two years to set up.</p>
-    </div>
-    <div class="c c-g">
-      <p style="font-size:28px;margin-bottom:8px">🏥</p>
-      <h3 style="font-size:20px;color:var(--green);margin-bottom:10px">Abbott</h3>
-      <p style="font-size:16px">Expanding Ensure, PediaSure, Glucerna DTC. Legacy distribution. <strong style="color:var(--t1)">Zero digital-native DNA.</strong></p>
-    </div>
+<!-- ============ SLIDE 2: THE EXPLOSION ============ -->
+<div class="slide" data-label="The Explosion">
+<div class="slide-inner">
+  <div class="label">01 — The Explosion</div>
+  <div class="big">India's <span class="gold">$164 billion</span> wellness market.</div>
+  <div class="body">The fastest-growing consumer wellness market on earth. And the most fragmented.</div>
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">$164B</div><div class="stat-label">Total Market (2025)</div></div>
+    <div class="stat-box"><div class="stat-num">52%</div><div class="stat-label">D2C CAGR to 2027</div></div>
+    <div class="stat-box"><div class="stat-num">28</div><div class="stat-label">Median Age</div></div>
+    <div class="stat-box"><div class="stat-num">650M+</div><div class="stat-label">Women Underserved</div></div>
   </div>
-  <div class="c c-p" style="margin-top:24px;text-align:center">
-    <p style="font-size:20px;color:var(--t1)"><strong>They're spending billions to move slowly.</strong> <span class="hl">We move in weeks.</span></p>
-  </div>
+  <div class="editorial-accent">The brands India will love for the next 50 years haven't been built yet.</div>
+</div>
 </div>
 
-<!-- SLIDE 4: THE TRUTH -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#1a1a2e 100%)">
-  <span class="k k-p">03 — THE TRUTH</span>
-  <h2>There Is No <span class="hl">All-In-One.</span></h2>
-  <div class="g2" style="margin-top:20px">
-    <div>
-      <div class="q" style="font-size:21px;margin-top:0">
-        5,000 years of Ayurveda trained this market to think in systems, not shortcuts. Ashwagandha for stress. Turmeric for inflammation. Triphala for digestion. The Indian consumer doesn't want one pill. They want the right pill.
-      </div>
-    </div>
-    <div>
-      <div class="c" style="margin-bottom:14px;border-color:rgba(252,247,237,0.2)">
-        <p style="font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--t2);margin-bottom:8px">🌎 Western Model</p>
-        <p style="font-size:18px;color:var(--t1)">"One drink. Everything in it. Trust the brand."</p>
-      </div>
-      <div class="c c-l">
-        <p style="font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--lime);margin-bottom:8px">🇮🇳 India Model</p>
-        <p style="font-size:18px;color:var(--t1)">"Targeted solutions. Trusted ingredients. Culturally fluent."</p>
-      </div>
-    </div>
+<!-- ============ SLIDE 3: THE SCRAMBLE ============ -->
+<div class="slide" data-label="The Scramble">
+<div class="slide-inner">
+  <div class="label">02 — The Scramble</div>
+  <div class="big">Everyone wants in. <span class="gold">Nobody's fast enough.</span></div>
+  <div class="grid-2x3">
+    <div class="ref-card"><div class="ref-num">₹334cr</div><div class="ref-name">OZiva + Wellbeing Nutrition</div><div class="ref-detail">Full acquisition. Still integrating. 200+ person teams.</div></div>
+    <div class="ref-card"><div class="ref-num">JV</div><div class="ref-name">Nature's Bounty, Osteo Bi-Flex</div><div class="ref-detail">Licensing global brands. Operational 2026. Pharma speed.</div></div>
+    <div class="ref-card"><div class="ref-num">Legacy</div><div class="ref-name">Ensure, PediaSure, Glucerna</div><div class="ref-detail">Expanding DTC. Zero digital-native DNA.</div></div>
   </div>
-  <div class="c c-p" style="margin-top:24px;text-align:center">
-    <p style="font-size:19px;color:var(--t1)">The brands that win India will be <strong>specific, trusted, and rooted in what Indians already believe.</strong></p>
-  </div>
+  <div class="editorial-accent">They're spending billions to move slowly. We move in weeks.</div>
+</div>
 </div>
 
-<!-- SLIDE 5: THE WHITE SPACE -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#2a1a2a 100%)">
-  <span class="k k-l">04 — THE WHITE SPACE</span>
-  <h2>Legacy vs. New vs. <span class="hl-l">Us</span></h2>
-  <div class="g3" style="margin-top:24px">
-    <div class="c" style="border-top:4px solid rgba(252,247,237,0.3)">
-      <p style="font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--t2);margin-bottom:12px">Legacy</p>
-      <p style="font-size:15px;color:var(--t2);margin-bottom:6px">HUL · Nestlé · Abbott</p>
-      <div style="height:1px;background:rgba(252,247,237,0.1);margin:10px 0"></div>
-      <ul class="bl" style="margin-top:8px">
-        <li style="font-size:16px">50+ years old</li>
-        <li style="font-size:16px">50x too expensive</li>
-        <li style="font-size:16px">Boards move at geological speed</li>
-        <li style="font-size:16px">No AI</li>
-      </ul>
+<!-- ============ SLIDE 4: THE TRUTH ============ -->
+<div class="slide" data-label="The Truth">
+<div class="slide-inner">
+  <div class="label">03 — The Truth</div>
+  <div class="huge">There is no <span class="gold">all-in-one.</span></div>
+  <div class="body">5,000 years of Ayurveda trained this market to think in systems, not shortcuts. Ashwagandha for stress. Turmeric for inflammation. Triphala for digestion. The Indian consumer doesn't want one pill. They want the right pill.</div>
+  <div class="split-cols">
+    <div class="col">
+      <div class="col-header dim-h">Western Model</div>
+      <div class="col-item dim-item">One drink. Everything in it.</div>
+      <div class="col-item dim-item">Trust the brand.</div>
+      <div class="col-item dim-item">Convenience over specificity.</div>
     </div>
-    <div class="c" style="border-top:4px solid rgba(252,247,237,0.3)">
-      <p style="font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--t2);margin-bottom:12px">New D2C</p>
-      <p style="font-size:15px;color:var(--t2);margin-bottom:6px">OZiva · Wellbeing · Kapiva</p>
-      <div style="height:1px;background:rgba(252,247,237,0.1);margin:10px 0"></div>
-      <ul class="bl" style="margin-top:8px">
-        <li style="font-size:16px">VC-dependent</li>
-        <li style="font-size:16px">No manufacturing moats</li>
-        <li style="font-size:16px">Burning cash</li>
-        <li style="font-size:16px">Replicable</li>
-      </ul>
-    </div>
-    <div class="c" style="border-top:4px solid var(--pink);background:rgba(255,47,204,0.06)">
-      <p style="font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--pink);margin-bottom:12px">Care & Bloom</p>
-      <p style="font-size:15px;color:var(--pink);margin-bottom:6px">The Third Option</p>
-      <div style="height:1px;background:rgba(255,47,204,0.2);margin:10px 0"></div>
-      <ul class="bl" style="margin-top:8px">
-        <li style="font-size:16px;color:var(--t1)"><strong>AI-native ops</strong></li>
-        <li class="l" style="font-size:16px;color:var(--t1)"><strong>Global clinical brands</strong></li>
-        <li class="g" style="font-size:16px;color:var(--t1)"><strong>India cultural fluency</strong></li>
-        <li style="font-size:16px;color:var(--t1)"><strong>Speed of a startup, infrastructure of a conglomerate</strong></li>
-      </ul>
+    <div class="col">
+      <div class="col-header gold-h">India Model</div>
+      <div class="col-item gold-item">Targeted solutions.</div>
+      <div class="col-item gold-item">Trusted ingredients.</div>
+      <div class="col-item gold-item">Culturally fluent.</div>
     </div>
   </div>
+  <div class="editorial-accent">The brands that win India will be specific, trusted, and rooted in what Indians already believe.</div>
+</div>
 </div>
 
-<!-- SLIDE 6: WHO WE ARE -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#1a2a1a 100%)">
-  <span class="k k-g">05 — THE PROOF</span>
-  <h2><span class="hl-g">$0 → $80M+</span> in 3 years.</h2>
-  <div class="g4" style="margin-top:28px">
-    <div class="c c-g" style="text-align:center">
-      <div class="sn sn-g" style="font-size:48px">3</div>
-      <div class="sl">People</div>
+<!-- ============ SLIDE 5: THE WHITE SPACE ============ -->
+<div class="slide" data-label="The White Space">
+<div class="slide-inner">
+  <div class="label">04 — The White Space</div>
+  <div class="big">Legacy vs. New vs. <span class="gold">Us.</span></div>
+  <div class="split-cols">
+    <div class="col">
+      <div class="col-header dim-h">Legacy (HUL, Nestlé)</div>
+      <div class="col-item dim-item">50+ years old</div>
+      <div class="col-item dim-item">50x too expensive</div>
+      <div class="col-item dim-item">Geological speed</div>
+      <div class="col-item dim-item">No AI. No community.</div>
     </div>
-    <div class="c c-p" style="text-align:center">
-      <div class="sn" style="font-size:48px">$0</div>
-      <div class="sl">Outside capital</div>
+    <div class="col">
+      <div class="col-header dim-h">New D2C (OZiva, Kapiva)</div>
+      <div class="col-item dim-item">VC-dependent</div>
+      <div class="col-item dim-item">No manufacturing moats</div>
+      <div class="col-item dim-item">Burning cash</div>
+      <div class="col-item dim-item">Replicable in 90 days</div>
     </div>
-    <div class="c c-l" style="text-align:center">
-      <div class="sn sn-l" style="font-size:48px">3</div>
-      <div class="sl">Years</div>
-    </div>
-    <div class="c" style="text-align:center;border-color:rgba(255,47,204,0.3)">
-      <div class="sn" style="font-size:48px">$8M</div>
-      <div class="sl">/mo run rate</div>
+    <div class="col">
+      <div class="col-header gold-h">Care & Bloom</div>
+      <div class="col-item gold-item">AI-native operations</div>
+      <div class="col-item gold-item">Global clinical brands</div>
+      <div class="col-item gold-item">India cultural fluency</div>
+      <div class="col-item gold-item">Speed + infrastructure</div>
     </div>
   </div>
-  <div class="q q-g" style="margin-top:32px;font-size:22px">
-    We didn't build a brand. We built a laboratory. We cracked DTC 3.0. Now we're bringing the playbook to India.
-  </div>
+  <div class="editorial-accent">Speed of a startup. Infrastructure of a conglomerate.</div>
+</div>
 </div>
 
-<!-- SLIDE 7: THE SPEAR: IM8 -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#2a1a2a 100%)">
-  <span class="k k-p">06 — THE SPEAR</span>
-  <h2>IM8 Health — <span class="hl">The Credibility Anchor</span></h2>
-  <div class="g2" style="margin-top:20px">
-    <div>
-      <ul class="bl">
-        <li><strong style="color:var(--t1)">Co-founded by David Beckham</strong></li>
-        <li class="l"><strong style="color:var(--t1)">Advisory: Mayo Clinic + NASA scientists</strong></li>
-        <li class="g"><strong style="color:var(--t1)">700,000+ customers globally</strong></li>
-        <li><strong style="color:var(--t1)">NSF Certified for Sport</strong></li>
-        <li class="l"><strong style="color:var(--t1)">12-week clinical trial</strong> — 95% more energy, 85% better digestion</li>
-        <li class="g"><strong style="color:var(--t1)">100+ clinically-dosed ingredients</strong></li>
-      </ul>
-      <div style="margin-top:16px">
-        <p style="font-size:14px;color:var(--pink)">🔗 im8health.com</p>
-      </div>
-    </div>
-    <div>
-      <div class="c c-p" style="height:100%;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:32px">
-        <p style="font-size:56px;margin-bottom:16px">⚡</p>
-        <p style="font-family:'Fraunces',serif;font-size:28px;color:var(--pink);font-weight:600;line-height:1.3">The most credentialed supplement brand on Earth.</p>
-        <div style="height:2px;background:rgba(255,47,204,0.3);margin:20px 0"></div>
-        <p style="font-family:'Fraunces',serif;font-size:24px;color:var(--t1);font-weight:500">And it's ours.</p>
-      </div>
-    </div>
+<!-- ============ SLIDE 6: THE PROOF ============ -->
+<div class="slide" data-label="The Proof">
+<div class="slide-inner" style="text-align:center">
+  <div class="label">05 — The Proof</div>
+  <div class="huge"><span class="dim" style="font-size:clamp(36px,5vw,60px)">$0</span> <span style="color:var(--dim);font-size:clamp(24px,3vw,36px)">→</span> <span class="gold">$80M+</span></div>
+  <div class="medium" style="margin-top:12px;color:var(--body-dim)">3 years. Minimal capital. Minimal team.</div>
+  <div class="stat-row" style="justify-content:center;margin-top:36px">
+    <div class="stat-box" style="text-align:center"><div class="stat-num">3</div><div class="stat-label">People</div></div>
+    <div class="stat-box" style="text-align:center"><div class="stat-num">Minimal</div><div class="stat-label">Outside Capital</div></div>
+    <div class="stat-box" style="text-align:center"><div class="stat-num">3 yrs</div><div class="stat-label">Zero to $80M</div></div>
   </div>
+  <div class="body" style="margin:28px auto 0;text-align:center">One brand. Built from scratch. Profitable from day one. Now at $8M/mo run rate and growing. Also scaled the fastest-growing supplement brand — as a side project.</div>
+  <div class="editorial-accent" style="margin-top:28px">We didn't build a brand. We built a laboratory.<br>Now we're bringing the playbook to India.</div>
+</div>
 </div>
 
-<!-- SLIDE 8: VIRAT KOHLI × IM8 -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#1a1a2e 100%)">
-  <span class="k k-l">07 — THE FACE</span>
-  <h2>Virat Kohli × <span class="hl-l">IM8</span></h2>
-  <div class="g2" style="margin-top:20px">
-    <div>
-      <div class="c c-l" style="margin-bottom:14px">
-        <p style="font-size:18px;color:var(--lime);font-weight:700">Not an endorsement deal. A co-ownership vision.</p>
-      </div>
-      <p style="font-size:16px;margin-bottom:12px">Kohli moved from endorser to <strong style="color:var(--t1)">investor</strong>:</p>
-      <ul class="bl" style="margin-top:8px">
-        <li class="l" style="font-size:16px">₹40cr into Agilitas Sports</li>
-        <li class="l" style="font-size:16px">30% stake in Chisel Fitness</li>
-        <li class="l" style="font-size:16px">Invested in Hyperice, Rage Coffee, Blue Tribe</li>
-      </ul>
-      <p style="font-size:16px;margin-top:14px">He's already building a health empire. IM8 is the missing piece — <strong style="color:var(--t1)">clinical-grade, globally proven, Beckham-level credibility.</strong></p>
-      <div class="q q-l" style="margin-top:16px;font-size:19px">
-        India's most trusted athlete in fitness. The world's most credentialed supplement. Together.
-      </div>
-    </div>
-    <div>
-      <div class="g2" style="gap:12px;margin-top:0">
-        <div class="c c-l" style="text-align:center;padding:20px">
-          <div class="sn sn-l" style="font-size:36px">270M+</div>
-          <div class="sl">Instagram followers</div>
-        </div>
-        <div class="c c-l" style="text-align:center;padding:20px">
-          <div class="sn sn-l" style="font-size:36px">#1</div>
-          <div class="sl">Most followed cricketer</div>
-        </div>
-      </div>
-      <div class="c c-l" style="text-align:center;padding:20px;margin-top:12px">
-        <div class="sn sn-l" style="font-size:36px">🏏</div>
-        <div class="sl">India's highest-paid athlete</div>
-      </div>
-      <div class="c c-p" style="margin-top:14px;text-align:center;padding:24px">
-        <p style="font-family:'Fraunces',serif;font-size:22px;color:var(--pink);font-weight:600">Beckham built IM8 globally.<br>Kohli makes it India's.</p>
-      </div>
-    </div>
+<!-- ============ SLIDE 7: THE SPEAR ============ -->
+<div class="slide" data-label="The Spear">
+<div class="slide-inner">
+  <div class="label">06 — The Spear</div>
+  <div class="big"><span class="gold">IM8 Health</span> — the credibility anchor.</div>
+  <div class="body">Co-founded by David Beckham. Advisory board from Mayo Clinic and NASA. The most credentialed supplement brand on Earth. And it's ours.</div>
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">700K+</div><div class="stat-label">Customers</div></div>
+    <div class="stat-box"><div class="stat-num">100+</div><div class="stat-label">Ingredients</div></div>
+    <div class="stat-box"><div class="stat-num">NSF</div><div class="stat-label">Certified for Sport</div></div>
+    <div class="stat-box"><div class="stat-num">12-wk</div><div class="stat-label">Clinical Trial</div></div>
   </div>
+  <div class="moat-list">
+    <div class="moat-item">95% reported more energy in clinical trial</div>
+    <div class="moat-item">85% experienced better digestion</div>
+    <div class="moat-item">Third-party tested. WADA compliant. Heavy metal free.</div>
+    <div class="moat-item">Featured: Forbes, NBC Today, Fortune, Fast Company</div>
+  </div>
+  <div class="editorial-accent">im8health.com</div>
+</div>
 </div>
 
-<!-- SLIDE 9: BEYOND ALL-IN-ONE -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#0d2a2e 100%)">
-  <span class="k k-g">08 — THE PORTFOLIO</span>
-  <h2>Beyond All-In-One. <span class="hl-g">A Portfolio for India.</span></h2>
-  <p style="font-size:17px;margin-bottom:4px">IM8 as premium clinical anchor → then targeted brands for Indian needs.</p>
-  <div class="g4" style="margin-top:16px">
-    <div class="c c-p">
-      <p style="font-size:28px;margin-bottom:8px">💪</p>
-      <h3 style="font-size:18px;color:var(--pink);margin-bottom:8px">Performance</h3>
-      <span class="t t-p">IM8</span>
-      <p style="font-size:14px;margin-top:10px">Clinical-grade daily nutrition. The Beckham + Kohli anchor. Premium tier.</p>
+<!-- ============ SLIDE 8: THE FACE ============ -->
+<div class="slide" data-label="Virat Kohli">
+<div class="slide-inner">
+  <div class="label">07 — The Face</div>
+  <div class="big">Virat Kohli × <span class="gold">IM8</span></div>
+  <div class="body">Not an endorsement deal. A co-ownership vision. Kohli already moved from endorser to investor — ₹40cr into Agilitas, 30% of Chisel Fitness, stakes in Hyperice, Rage Coffee, Blue Tribe. He's building a health empire. IM8 is the missing piece.</div>
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">270M+</div><div class="stat-label">Instagram Followers</div></div>
+    <div class="stat-box"><div class="stat-num">#1</div><div class="stat-label">Most-Followed Cricketer</div></div>
+    <div class="stat-box"><div class="stat-num">₹40cr</div><div class="stat-label">Agilitas Investment</div></div>
+  </div>
+  <div class="split-cols">
+    <div class="col">
+      <div class="col-header gold-h">Kohli Brings</div>
+      <div class="col-item gold-item">India's most trusted athlete in fitness</div>
+      <div class="col-item gold-item">270M+ social reach</div>
+      <div class="col-item gold-item">Proven shift: endorser → investor → owner</div>
+      <div class="col-item gold-item">Cultural credibility no brand can buy</div>
     </div>
-    <div class="c c-g">
-      <p style="font-size:28px;margin-bottom:8px">🌿</p>
-      <h3 style="font-size:18px;color:var(--green);margin-bottom:8px">Gut Health</h3>
-      <span class="t t-g">Seed</span>
-      <p style="font-size:14px;margin-top:10px">Probiotics + prebiotics. India's #1 wellness concern. 38 clinical trials. Not in India yet.</p>
-    </div>
-    <div class="c" style="border-color:rgba(167,139,250,0.3)">
-      <p style="font-size:28px;margin-bottom:8px">💜</p>
-      <h3 style="font-size:18px;color:#a78bfa;margin-bottom:8px">Women's Wellness</h3>
-      <span class="t" style="background:rgba(167,139,250,0.15);color:#a78bfa">Ritual</span>
-      <p style="font-size:14px;margin-top:10px">Transparent supply chain. 650M Indian women underserved. Prenatal, postnatal, daily. Not in India yet.</p>
-    </div>
-    <div class="c c-l">
-      <p style="font-size:28px;margin-bottom:8px">🧠</p>
-      <h3 style="font-size:18px;color:var(--lime);margin-bottom:8px">Stress & Sleep</h3>
-      <span class="t t-l">Build / Acquire</span>
-      <p style="font-size:14px;margin-top:10px">Ashwagandha-meets-clinical. Bridge Ayurveda and modern science.</p>
+    <div class="col">
+      <div class="col-header gold-h">IM8 Brings</div>
+      <div class="col-item gold-item">Beckham-level global credibility</div>
+      <div class="col-item gold-item">Mayo Clinic + NASA advisory</div>
+      <div class="col-item gold-item">NSF Certified, 12-week clinical data</div>
+      <div class="col-item gold-item">C&B AI-native ops machine</div>
     </div>
   </div>
-  <div class="c" style="margin-top:18px;text-align:center;border-color:var(--green)">
-    <p style="font-size:18px;color:var(--t1)">Each brand = targeted, trusted, culturally fluent. <strong style="color:var(--green)">Not one jar. A system.</strong></p>
-  </div>
+  <div class="editorial-accent">Beckham built IM8 globally. Kohli makes it India's.</div>
+</div>
 </div>
 
-<!-- SLIDE 10: LICENSED BIG BRANDS -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#2a2010 100%)">
-  <span class="k k-l">09 — THE PLAYBOOK</span>
-  <h2>License. Launch. Scale. <span class="hl-l">Repeat.</span></h2>
-  <p style="font-size:17px;margin-bottom:8px">Bring proven global brands to India through C&B's AI ops + manufacturing + distribution.</p>
-  <div class="tl" style="margin-top:16px">
-    <div class="tli" style="border-color:var(--lime)">
-      <div style="position:absolute;left:-7px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--lime)"></div>
-      <h4><span class="t t-l">Month 1–2</span> License + Regulatory</h4>
-      <p>License agreement signed. Regulatory mapping for FSSAI / CDSCO. India-specific compliance.</p>
+<!-- ============ SLIDE 9: THE PORTFOLIO ============ -->
+<div class="slide" data-label="The Portfolio">
+<div class="slide-inner">
+  <div class="label">08 — The Portfolio</div>
+  <div class="big">Beyond all-in-one. A <span class="gold">system</span> for India.</div>
+  <div class="body">IM8 as the premium clinical anchor. Then targeted brands for Indian needs. Each one specific. Each one trusted.</div>
+  <div class="grid-2x2">
+    <div class="cat-card">
+      <div class="cat-tag">Anchor</div>
+      <div class="cat-name" style="margin-top:12px;font-size:20px">Performance — IM8</div>
+      <div style="font-size:13px;color:var(--body-dim);margin-top:8px;line-height:1.5">Clinical-grade daily nutrition. Beckham + Kohli. Premium tier.</div>
+      <div class="cat-size" style="margin-top:12px">$12B+</div>
+      <div style="font-size:11px;color:var(--dim);margin-top:4px;font-style:italic">Supplements TAM</div>
     </div>
-    <div class="tli" style="border-color:var(--lime)">
-      <div style="position:absolute;left:-7px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--lime)"></div>
-      <h4><span class="t t-l">Month 3–4</span> Formulation + Packaging</h4>
-      <p>India formulation adaptation. Packaging localization. Manufacturing partner onboarding.</p>
+    <div class="cat-card">
+      <div class="cat-tag">License</div>
+      <div class="cat-name" style="margin-top:12px;font-size:20px">Gut Health — Seed</div>
+      <div style="font-size:13px;color:var(--body-dim);margin-top:8px;line-height:1.5">Probiotics + prebiotics. India's #1 wellness concern. 38 clinical trials. Not in India.</div>
+      <div class="cat-size" style="margin-top:12px">$4B+</div>
+      <div style="font-size:11px;color:var(--dim);margin-top:4px;font-style:italic">Gut health TAM</div>
     </div>
-    <div class="tli" style="border-color:var(--pink)">
-      <div style="position:absolute;left:-7px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--pink)"></div>
-      <h4><span class="t t-p">Month 5–6</span> DTC Launch + Quick Commerce</h4>
-      <p>DTC launch. Quick commerce: Blinkit, Zepto, Instamart. First revenue.</p>
+    <div class="cat-card">
+      <div class="cat-tag">License</div>
+      <div class="cat-name" style="margin-top:12px;font-size:20px">Women's Wellness — Ritual</div>
+      <div style="font-size:13px;color:var(--body-dim);margin-top:8px;line-height:1.5">Transparent supply chain. 650M Indian women underserved. Prenatal, postnatal, daily.</div>
+      <div class="cat-size" style="margin-top:12px">$8B+</div>
+      <div style="font-size:11px;color:var(--dim);margin-top:4px;font-style:italic">Women's wellness TAM</div>
     </div>
-    <div class="tli" style="border-color:var(--green)">
-      <div style="position:absolute;left:-7px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--green)"></div>
-      <h4><span class="t t-g">Month 7–12</span> Scale</h4>
-      <p>Retail expansion. Amazon India. Pharmacy chains. National distribution.</p>
+    <div class="cat-card">
+      <div class="cat-tag next">Build</div>
+      <div class="cat-name" style="margin-top:12px;font-size:20px">Stress & Sleep</div>
+      <div style="font-size:13px;color:var(--body-dim);margin-top:8px;line-height:1.5">Ashwagandha-meets-clinical. Bridge Ayurveda and modern science.</div>
+      <div class="cat-size" style="margin-top:12px">$6B+</div>
+      <div style="font-size:11px;color:var(--dim);margin-top:4px;font-style:italic">Stress & sleep TAM</div>
     </div>
   </div>
-  <div class="c c-p" style="margin-top:18px;text-align:center">
-    <p style="font-size:18px;color:var(--t1)">Nestlé took <strong>2 years</strong> to set up their Dr. Reddy's JV. <span class="hl">We launch in 6 months.</span></p>
-  </div>
+  <div class="editorial-accent">Not one jar. A system. Each brand = targeted, trusted, culturally fluent.</div>
+</div>
 </div>
 
-<!-- SLIDE 11: THE AI ADVANTAGE -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#1a1a2e 100%)">
-  <span class="k k-p">10 — THE MACHINE</span>
-  <h2><span class="hl">AI-Native</span> Operations.</h2>
-  <div class="g3" style="margin-top:24px">
-    <div class="c c-p" style="text-align:center">
-      <div class="sn" style="font-size:36px">$50K</div>
-      <div class="sl">AI infra / year</div>
-      <div style="height:1px;background:rgba(255,47,204,0.2);margin:10px 0"></div>
-      <p style="font-size:14px">vs <strong style="color:var(--pink)">$2M+</strong> equivalent human team</p>
-    </div>
-    <div class="c c-l" style="text-align:center">
-      <div class="sn sn-l" style="font-size:36px">60-80%</div>
-      <div class="sl">Cost reduction</div>
-      <div style="height:1px;background:rgba(204,253,40,0.2);margin:10px 0"></div>
-      <p style="font-size:14px">Across all operations</p>
-    </div>
-    <div class="c c-g" style="text-align:center">
-      <div class="sn sn-g" style="font-size:36px">4-8w</div>
-      <div class="sl">Brand launch time</div>
-      <div style="height:1px;background:rgba(45,198,83,0.2);margin:10px 0"></div>
-      <p style="font-size:14px">From zero to live</p>
-    </div>
+<!-- ============ SLIDE 10: THE PLAYBOOK ============ -->
+<div class="slide" data-label="The Playbook">
+<div class="slide-inner">
+  <div class="label">09 — The Playbook</div>
+  <div class="big">License. Launch. Scale. <span class="gold">Repeat.</span></div>
+  <div class="body">Bring proven global brands to India through C&B's AI ops + manufacturing + distribution. What takes Nestlé 2 years, we do in 6 months.</div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">Month 1-2</div><div class="tl-val">License + Regulatory</div><div class="tl-desc">Agreement signed. India regulatory mapping.</div></div>
+    <div class="tl-item"><div class="tl-year">Month 3-4</div><div class="tl-val">Formulate + Package</div><div class="tl-desc">India-specific formulation. Local packaging.</div></div>
+    <div class="tl-item"><div class="tl-year">Month 5-6</div><div class="tl-val">DTC Launch</div><div class="tl-desc">Shopify India + Blinkit, Zepto, Instamart.</div></div>
+    <div class="tl-item"><div class="tl-year">Month 7-12</div><div class="tl-val">Scale</div><div class="tl-desc">Retail + Amazon India + pharmacy chains.</div></div>
   </div>
-  <div class="g2" style="margin-top:20px">
-    <div>
-      <p style="font-size:14px;color:var(--pink);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">What the AI does</p>
-      <ul class="bl">
-        <li style="font-size:16px">Daily executive briefings</li>
-        <li class="l" style="font-size:16px">Real-time ad monitoring + optimization</li>
-        <li class="g" style="font-size:16px">Customer service audit</li>
-        <li style="font-size:16px">SERP tracking + competitor watch</li>
-        <li class="l" style="font-size:16px">Automated P&L calculation</li>
-        <li class="g" style="font-size:16px">Cross-brand inventory management</li>
-      </ul>
-    </div>
-    <div class="c c-p" style="display:flex;align-items:center;justify-content:center;text-align:center;padding:28px">
-      <p style="font-family:'Fraunces',serif;font-size:22px;color:var(--pink);font-weight:600;line-height:1.4">The reason we can run 5 brands simultaneously while HUL needs 200 people for one.</p>
-    </div>
-  </div>
+  <div class="editorial-accent">Nestlé took 2 years to set up their Dr. Reddy's JV. We launch in 6 months.</div>
+</div>
 </div>
 
-<!-- SLIDE 12: FIRST 12 MONTHS -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#1a2a1a 100%)">
-  <span class="k k-g">11 — YEAR ONE</span>
-  <h2>First 12 Months: <span class="hl-g">US$3–5M</span></h2>
-  <div class="g4" style="margin-top:24px">
-    <div class="c" style="border-top:4px solid var(--pink)">
-      <p style="font-size:12px;color:var(--pink);text-transform:uppercase;letter-spacing:1px;font-weight:600">Q1</p>
-      <p style="font-size:15px;margin-top:10px;color:var(--t1)">IM8 India DTC launch. Kohli partnership locked. Regulatory + formulation.</p>
-    </div>
-    <div class="c" style="border-top:4px solid var(--lime)">
-      <p style="font-size:12px;color:var(--lime);text-transform:uppercase;letter-spacing:1px;font-weight:600">Q2</p>
-      <p style="font-size:15px;margin-top:10px;color:var(--t1)">IM8 on quick commerce (Blinkit, Zepto). First licensed brand in pipeline.</p>
-      <p style="font-size:14px;margin-top:8px;color:var(--lime)">Revenue: $500K–1M</p>
-    </div>
-    <div class="c" style="border-top:4px solid var(--green)">
-      <p style="font-size:12px;color:var(--green);text-transform:uppercase;letter-spacing:1px;font-weight:600">Q3</p>
-      <p style="font-size:15px;margin-top:10px;color:var(--t1)">Second brand launched. Amazon India. Retail pilot (pharmacy chains).</p>
-      <p style="font-size:14px;margin-top:8px;color:var(--green)">Revenue: $1–2M cumulative</p>
-    </div>
-    <div class="c" style="border-top:4px solid #a78bfa">
-      <p style="font-size:12px;color:#a78bfa;text-transform:uppercase;letter-spacing:1px;font-weight:600">Q4</p>
-      <p style="font-size:15px;margin-top:10px;color:var(--t1)">3-4 brands live. IM8 break-even. Pipeline of 2-3 more.</p>
-      <p style="font-size:14px;margin-top:8px;color:#a78bfa">Revenue: $3–5M cumulative</p>
-    </div>
+<!-- ============ SLIDE 11: THE MACHINE ============ -->
+<div class="slide" data-label="The Machine">
+<div class="slide-inner">
+  <div class="label">10 — The Machine</div>
+  <div class="big">AI-native <span class="gold">operations.</span></div>
+  <div class="stat-row" style="margin-top:28px">
+    <div class="stat-box" style="text-align:center"><div class="stat-num">$50K</div><div class="stat-label">AI Infra / Year</div></div>
+    <div class="stat-box" style="text-align:center"><div class="stat-num">vs $2M+</div><div class="stat-label">Equivalent Human Team</div></div>
+    <div class="stat-box" style="text-align:center"><div class="stat-num">60–80%</div><div class="stat-label">Cost Reduction</div></div>
+    <div class="stat-box" style="text-align:center"><div class="stat-num">4–8 wks</div><div class="stat-label">Brand Launch Time</div></div>
   </div>
-  <div class="c c-g" style="margin-top:20px;text-align:center">
-    <p style="font-family:'Fraunces',serif;font-size:24px;color:var(--green);font-weight:600">Prove the model. Then pour fuel.</p>
+  <div class="moat-list" style="margin-top:24px">
+    <div class="moat-item">6AM daily AI briefing — revenue, spend, anomalies</div>
+    <div class="moat-item">Every 15 min — ad performance monitoring + auto-adjustment</div>
+    <div class="moat-item">Continuous — customer service audit, SERP tracking, competitor watch</div>
+    <div class="moat-item">Weekly — full P&L calculation, creative performance analysis</div>
+    <div class="moat-item">24/7 — the team member that never sleeps, costs $50K/yr</div>
   </div>
+  <div class="editorial-accent">The reason we can run 5 brands simultaneously while HUL needs 200 people for one.</div>
+</div>
 </div>
 
-<!-- SLIDE 13: THE MATH -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#2a1a2a 100%)">
-  <span class="k k-p">12 — THE MATH</span>
-  <h2>From $5M to <span class="hl">$500M.</span></h2>
-  <div class="g3" style="margin-top:28px">
-    <div class="c c-g" style="text-align:center;padding:28px">
-      <p style="font-size:13px;color:var(--green);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:8px">Year 1</p>
-      <div class="sn sn-g" style="font-size:40px">$3–5M</div>
-      <p style="font-size:14px;margin-top:10px">IM8 + 1-2 licensed brands</p>
-    </div>
-    <div class="c c-l" style="text-align:center;padding:28px">
-      <p style="font-size:13px;color:var(--lime);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:8px">Year 3</p>
-      <div class="sn sn-l" style="font-size:40px">$50–100M</div>
-      <p style="font-size:14px;margin-top:10px">5-8 brands, 3 categories, retail + DTC + marketplace</p>
-    </div>
-    <div class="c c-p" style="text-align:center;padding:28px">
-      <p style="font-size:13px;color:var(--pink);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:8px">Year 5</p>
-      <div class="sn" style="font-size:40px">$300–500M</div>
-      <p style="font-size:14px;margin-top:10px">15-20 brands, multi-category portfolio</p>
-    </div>
+<!-- ============ SLIDE 12: YEAR ONE ============ -->
+<div class="slide" data-label="Year One">
+<div class="slide-inner">
+  <div class="label">11 — Year One</div>
+  <div class="big">First 12 months: <span class="gold">US$3–5M</span></div>
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-year">Q1 · Launch</div><div class="tl-val">Launch</div><div class="tl-desc">IM8 India DTC. Kohli partnership locked. Regulatory + formulation.</div></div>
+    <div class="tl-item"><div class="tl-year">Q2 · Accelerate</div><div class="tl-val">$500K–1M</div><div class="tl-desc">Quick commerce (Blinkit, Zepto). First licensed brand in pipeline.</div></div>
+    <div class="tl-item"><div class="tl-year">Q3 · Expand</div><div class="tl-val">$1–2M</div><div class="tl-desc">Second brand launched. Amazon India. Retail pilot (pharmacy chains).</div></div>
+    <div class="tl-item"><div class="tl-year">Q4 · Prove</div><div class="tl-val">$3–5M</div><div class="tl-desc">3–4 brands live. IM8 break-even. Pipeline of 2–3 more.</div></div>
   </div>
-  <div class="c c-p" style="margin-top:24px;text-align:center;padding:20px">
-    <p style="font-size:20px;color:var(--t1)">At Indian DTC multiples (5-8x revenue): <strong style="color:var(--pink)">$1.5–4B enterprise value</strong></p>
-  </div>
-  <div style="margin-top:18px;text-align:center">
-    <p style="font-size:17px;font-style:italic">India D2C nutrition alone: ₹8,700cr by 2027. We take 5% = <strong style="color:var(--lime)">₹435cr ($52M).</strong></p>
-  </div>
+  <div class="editorial-accent">Prove the model. Then pour fuel.</div>
+</div>
 </div>
 
-<!-- SLIDE 14: CONVICTION -->
-<div class="slide" style="background:linear-gradient(135deg,#1A1A1A 0%,#2a1a2a 50%,#1a2a2e 100%)">
-  <div style="text-align:center;max-width:900px;margin:0 auto">
-    <span class="k k-p">13 — CONVICTION</span>
-    <div class="q" style="text-align:left;font-size:22px;margin-top:20px">
-      India already trusts atoms. We bring the machine.
-    </div>
-    <p style="font-size:18px;margin-bottom:20px">India has the culture of wellness — Ayurveda, yoga, turmeric milk. What it doesn't have is <strong style="color:var(--t1)">clinical-grade products</strong>, <strong style="color:var(--pink)">AI-native operations</strong>, and <strong style="color:var(--lime)">global celebrity co-ownership</strong>.</p>
-    <div class="g3" style="max-width:800px;margin:20px auto 0">
-      <div class="c" style="text-align:center;padding:18px">
-        <div class="sn sn-l" style="font-size:32px">1.4B</div>
-        <div class="sl">People</div>
-      </div>
-      <div class="c" style="text-align:center;padding:18px">
-        <div class="sn sn-g" style="font-size:32px">28</div>
-        <div class="sl">Median age</div>
-      </div>
-      <div class="c" style="text-align:center;padding:18px">
-        <div class="sn" style="font-size:32px">12mo</div>
-        <div class="sl">The window</div>
-      </div>
-    </div>
-    <h1 style="font-size:44px;margin-top:36px"><span class="hl">The LVMH of Indian Wellness.</span></h1>
-    <p style="font-family:'Fraunces',serif;font-size:24px;margin-top:8px">Built with AI. Powered by trust.</p>
-    <div style="margin-top:40px">
-      <div class="c c-p" style="display:inline-block;padding:14px 48px;cursor:pointer">
-        <p style="font-size:20px;color:var(--pink);font-weight:700;margin:0;letter-spacing:2px">LET'S TALK</p>
-      </div>
-    </div>
+<!-- ============ SLIDE 13: THE MATH ============ -->
+<div class="slide" data-label="The Math">
+<div class="slide-inner" style="text-align:center">
+  <div class="label">12 — The Math</div>
+  <div class="medium" style="color:var(--body-dim)">From proof of concept to:</div>
+  <div class="huge" style="margin-top:8px"><span class="gold">$500M</span></div>
+  <div class="timeline" style="margin-top:36px">
+    <div class="tl-item"><div class="tl-year">Year 1</div><div class="tl-val">$3–5M</div><div class="tl-desc">IM8 + 1–2 licensed brands</div></div>
+    <div class="tl-item"><div class="tl-year">Year 3</div><div class="tl-val">$50–100M</div><div class="tl-desc">5–8 brands, 3 categories, retail + DTC</div></div>
+    <div class="tl-item"><div class="tl-year">Year 5</div><div class="tl-val">$300–500M</div><div class="tl-desc">15–20 brands, multi-category portfolio</div></div>
   </div>
+  <div class="editorial-accent" style="margin-top:32px">At Indian DTC multiples (5–8x revenue):<br><span class="gold" style="font-size:clamp(28px,3.5vw,44px)">$1.5–4B</span> enterprise value.</div>
+</div>
 </div>
 
+<!-- ============ SLIDE 14: CONVICTION ============ -->
+<div class="slide" data-label="Conviction">
+<div class="slide-inner" style="text-align:center">
+  <div class="label">13 — Conviction</div>
+  <div class="big">India already trusts <span class="gold">atoms.</span><br>We bring the <span class="gold">machine.</span></div>
+  <div class="divider" style="margin:32px auto"></div>
+  <div class="body" style="margin:0 auto;text-align:center">India has the culture of wellness — Ayurveda, yoga, turmeric milk. What it doesn't have is clinical-grade products, AI-native operations, and global celebrity co-ownership. 1.4 billion people. Median age 28. Wellness spend accelerating. The window is 12 months.</div>
+  <div class="divider" style="margin:32px auto"></div>
+  <div class="huge" style="font-size:clamp(36px,5vw,60px)">The <span class="gold">LVMH of Indian Wellness.</span></div>
+  <div class="editorial-accent" style="margin-top:36px">Built with AI. Powered by trust.</div>
+  <div style="margin-top:48px;font-size:13px;color:var(--dim);letter-spacing:2px">LET'S TALK</div>
+</div>
 </div>
 
-<div class="sc" id="counter">1 / 14</div>
-<div class="nh">← → Arrow keys to navigate</div>
+</div><!-- end .deck -->
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn" onclick="prev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <div class="progress">
+    <div class="counter"><span id="current">01</span> / <span id="total">14</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="section-label" id="sectionLabel">India Wellness</div>
+  </div>
+  <button class="nav-btn" onclick="next()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
 
 <script>
-const s=document.querySelectorAll('.slide'),c=document.getElementById('counter');let i=0;
-function go(n){s[i].classList.remove('active');i=(n+s.length)%s.length;s[i].classList.add('active');c.textContent=`${i+1} / ${s.length}`}
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(i+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(i-1)}if(e.key==='Home')go(0);if(e.key==='End')go(s.length-1)});
-let tx=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX});document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50){d>0?go(i+1):go(i-1)}});
-document.addEventListener('click',e=>{e.clientX>window.innerWidth/2?go(i+1):go(i-1)});
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let idx=0;
+document.getElementById('total')
+.textContent=String(total).padStart(2,'0');
+
+function go(n){
+  slides[idx].classList.remove('active');
+  slides[idx].querySelectorAll('.slide-inner > *').forEach(el=>{el.style.animation='none';el.offsetHeight;el.style.animation=''});
+  idx=((n%total)+total)%total;
+  slides[idx].classList.add('active');
+  document.getElementById('current').textContent=String(idx+1).padStart(2,'0');
+  document.getElementById('progressFill').style.width=((idx+1)/total*100)+'%';
+  document.getElementById('sectionLabel').textContent=slides[idx].dataset.label||'';
+}
+function next(){go(idx+1)}
+function prev(){go(idx-1)}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' ')next();
+  if(e.key==='ArrowLeft')prev();
+  if(e.key==='ArrowDown')next();
+  if(e.key==='ArrowUp')prev();
+});
+
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){d<0?next():prev()}},{passive:true});
 </script>
 </body>
 </html>
