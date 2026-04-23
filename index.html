@@ -15,7 +15,8 @@
 --text:#e0daf0;--dim:rgba(255,255,255,0.35);--body-dim:rgba(255,255,255,0.55);
 }
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
--webkit-tap-highlight-color:transparent;touch-action:manipulation;overscroll-behavior:contain}
+-webkit-tap-highlight-color:transparent;overscroll-behavior:contain}
+body{touch-action:pan-y}
 body{background:linear-gradient(170deg,#1A0E3D 0%,#0F0A1F 40%,#08051A 100%)}
 
 /* --- GRAIN OVERLAY --- */
@@ -572,9 +573,9 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowUp')prev();
 });
 
-let tx=0;
-document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
-document.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){d<0?next():prev()}},{passive:true});
+let tx=0,ty=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;const dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?next():prev()}},{passive:true});
 </script>
 </body>
 </html>
